@@ -280,4 +280,7 @@
       crowUrl = #{crowurl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getDietByDiseasename" parameterType="String" resultType="cn.qs.bean.diet.DietWithBLOBs" >
+    select * from diet where diseasename = #{diseasename}
+  </select>
 </mapper>

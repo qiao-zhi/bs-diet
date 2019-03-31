@@ -37,4 +37,6 @@ public interface DietMapper {
     int updateByPrimaryKeyWithBLOBs(DietWithBLOBs record);
 
     int updateByPrimaryKey(Diet record);
+    
+    DietWithBLOBs getDietByDiseasename(@Param("diseasename") String diseasename);
 }

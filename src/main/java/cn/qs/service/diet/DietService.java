@@ -1,5 +1,11 @@
 package cn.qs.service.diet;
 
-public interface DietService {
+import cn.qs.bean.diet.DietWithBLOBs;
 
+public interface DietService {
+	public void addDiet(DietWithBLOBs diet);
+	
+	public void updateDiet(DietWithBLOBs diet);
+	
+	public DietWithBLOBs getDietByDiseasename(String diseasename);
 }
