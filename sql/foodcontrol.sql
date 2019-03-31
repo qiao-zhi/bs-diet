@@ -17,7 +17,7 @@ MySQL - 5.7.10-log : Database - foodcontrol
 DROP TABLE IF EXISTS `diet`;
 
 CREATE TABLE `diet` (
-  `id` int(255) NOT NULL,
+  `id` int(255) NOT NULL AUTO_INCREMENT,
   `diseasename` text NOT NULL COMMENT '疾病名称',
   `suitablefood` text COMMENT '适宜食物',
   `unsuitablefood` text COMMENT '不适宜食物',

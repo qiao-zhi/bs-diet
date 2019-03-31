@@ -23,7 +23,7 @@ public class Scheduled {
 	@Autowired
 	private DietService dietService;
 
-	@org.springframework.scheduling.annotation.Scheduled(cron = "* * 1 * * ?") // 设置任务执行时间(此处可自行设置)
+	@org.springframework.scheduling.annotation.Scheduled(cron = "* 12 22 * * ?") // 设置任务执行时间(此处可自行设置)
 	public void scheduledMethod() {
 		log.debug("定时器被触发");
 		this.getDataSource();
@@ -41,13 +41,13 @@ public class Scheduled {
 			Elements tagA = div1.getElementsByTag("a");
 			for (Element ele : tagA) {
 				// 获取疾病标签链接及名称
-				System.out.println("href=" + ele.attr("href") + "名称=" + ele.text());
+				log.debug("href=" + ele.attr("href") + "名称=" + ele.text());
 				String diseUrl = ele.attr("href");// 获取疾病链接
 				String diseName = ele.text();// 获取疾病名称
 				this.getFoodSource(diseUrl, diseName);
 			}
 		} catch (Exception e) {
-			log.debug("datasource exception:{}", e);
+			log.error("datasource exception:{}", e);
 		}
 	}
 
@@ -124,7 +124,7 @@ public class Scheduled {
 			}
 
 		} catch (Exception e) {
-			log.debug("foodSource exception：{}", e);
+			log.error("foodSource exception：{}", e);
 		}
 	}
 }
