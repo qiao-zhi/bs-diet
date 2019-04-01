@@ -1,5 +1,7 @@
 package cn.qs.service.diet;
 
+import java.util.List;
+
 import cn.qs.bean.diet.DietWithBLOBs;
 
 public interface DietService {
@@ -8,4 +10,6 @@ public interface DietService {
 	public void updateDiet(DietWithBLOBs diet);
 	
 	public DietWithBLOBs getDietByDiseasename(String diseasename);
+
+	public List<DietWithBLOBs> getDietsByKeyword(String keyWord);
 }
