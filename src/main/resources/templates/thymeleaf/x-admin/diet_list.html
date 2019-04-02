@@ -10,9 +10,10 @@
     <link rel="shortcut icon" href="/static/x-admin/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/font.css'}"/>
     <link rel="stylesheet" th:href="${#httpServletRequest.getContextPath()+'/static/x-admin/css/xadmin.css'}"/>
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.all.js'}" charset="utf-8"></script>
+    
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/js/jquery.min.js'}"></script>
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/js/xadmin.js'}"></script>
+    <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/lib/layui/layui.js'}" charset="utf-8"></script>
     
     <!--自己写的JS  -->
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
@@ -39,7 +40,8 @@
       </div>
       <hr class="layui-bg-gray"/>
       <div class="layui-row" style="margin:30px 0px 0px 100px;">
-      		<h2>查询到的数据将会在这里显示!</h2>
+    	<div class="layui-anim layui-anim-up layui-anim-loop">XX</div>
+      	<h2>查询到的数据将会在这里显示!</h2>
       </div>
     </div>
   </body>
