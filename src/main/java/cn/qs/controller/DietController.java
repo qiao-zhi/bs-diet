@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -50,15 +51,35 @@ public class DietController {
 		return JSONResultUtil.ok();
 	}
 
+	/**
+	 * 根据关键字搜索疾病
+	 * 
+	 * @param keyword
+	 * @return
+	 */
 	@RequestMapping("/getDietsByKeyword")
 	@ResponseBody
 	public List<DietWithBLOBs> getDietsByKeyword(String keyword) {
 		List<DietWithBLOBs> result = new ArrayList<>();
-
 		if (StringUtils.isBlank(keyword)) {
 			return result;
 		}
 
 		return dietService.getDietsByKeyword(keyword);
 	}
+
+	/**
+	 * 根据疾病id查询疾病详情
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/dietDetail")
+	public String getDietById(Integer id, ModelMap map) {
+		DietWithBLOBs dietWithBLOBs = dietService.getDietById(id);
+
+		map.put("dietWithBLOBs", dietWithBLOBs);
+		return "dietDetail";
+	}
+
 }

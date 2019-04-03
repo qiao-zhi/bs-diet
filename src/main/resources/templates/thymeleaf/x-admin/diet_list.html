@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-  
   <head>
     <meta charset="UTF-8"/>
     <title>欢迎页面-X-admin2.0</title>
@@ -17,15 +16,30 @@
     
     <!--自己写的JS  -->
     <script type="text/javascript" th:src="${#httpServletRequest.getContextPath()+'/static/x-admin/MyJs/PublicFunctions.js'}"></script>
+    <style type="text/css">
+.dietDiv {
+	float:left;
+	margin: 0 auto;
+	background: darkcyan;
+	width: 200px;
+	height: 200px;
+	font-size:20px;
+	margin-left:5px;
+	border: 2px solid darkslategray;
+	border-radius: 30px;
+	text-align: center;
+	line-height: 200px;
+}
+</style>
   </head>
   
   <body class="layui-anim layui-anim-up">
     <div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="">首页</a>
-        <a href="">演示</a>
+        <a href="">疾病</a>
         <a>
-          <cite>导航元素</cite></a>
+          <cite>疾病检索</cite></a>
       </span>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -39,9 +53,7 @@
         </form>
       </div>
       <hr class="layui-bg-gray"/>
-      <div class="layui-row" style="margin:30px 0px 0px 100px;">
-    	<div class="layui-anim layui-anim-up layui-anim-loop">XX</div>
-      	<h2>查询到的数据将会在这里显示!</h2>
+      <div class="layui-row" style="margin:30px 0px 0px 100px;" id="dietsOutDiv">
       </div>
     </div>
   </body>
@@ -57,10 +69,27 @@
 		}
 		
 		$.post("/getDietsByKeyword.html",{"keyword":keyword},function(data){
-			alert(JSON.stringify(data));
+			/*<![CDATA[*/
+			if(data != null && data.length > 0){
+				$("#dietsOutDiv").html("");
+				for(var i=0;i<data.length;i++){
+					var diet = data[i];
+					var str = "<div class='dietDiv' title='点击查看详情' onclick='getDietById("+diet.id+")'>"
+					+diet.diseasename
+					+"</div>";
+					
+					$("#dietsOutDiv").append(str);
+				}
+			}else{
+				layer.msg('没有相匹配的疾病');
+			}
+			/*]]>*/
 		},'json');
   });
 } 
-  
-
+ 
+function getDietById(id){
+	var url = '/dietDetail.html?id='+id;
+	x_admin_show('查看疾病详情',url,600,450);
+}
 </script>

@@ -1,6 +1,5 @@
 package cn.qs.utils;
 
-
 /**
  * 默认值
  * 
@@ -23,5 +22,10 @@ public class DefaultValue {
 	 * 移动端token的更新时间(也就是如果更新时间+当前时间大于预计失效时间就更新token)
 	 */
 	public static final int TOKEN_UPDATE_TIME = 1;
+
+	/**
+	 * 生效的海明距离
+	 */
+	public static final int HAMMING_VALUE = 15;
 
 }
