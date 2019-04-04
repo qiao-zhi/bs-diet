@@ -27,12 +27,15 @@
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;" th:text="${session.user.fullname}">admin</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-              <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+             <!--  <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
+              <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd> -->
               <dd><a href="/logout.html"  th:href="${#httpServletRequest.getContextPath()+'/logout.html'}">退出</a></dd>
+              <dd th:if="${session.user.username} ne 'admin'"><a href="javascript:void(0)"  onclick="updateUser();">个人信息</a></dd>
             </dl>
           </li>
+          <!-- <li class="layui-nav-item to-index"><a href="/preIndex.html">前台首页</a></li> -->
         </ul>
         
     </div>
@@ -99,7 +102,12 @@
         <div class="copyright">Copyright ©2019 qs All Rights Reserved</div>  
     </div>
     <!-- 底部结束 -->
+    <!-- 底部结束 -->
     <script>
+	    function updateUser(id){
+	    	var url = 'user/updateUser.html?from=personal';
+	    	x_admin_show('修改用户',url,600,400);
+	    }
     </script>
 </body>
 </html>
