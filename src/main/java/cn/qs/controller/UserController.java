@@ -52,7 +52,8 @@ public class UserController {
 		}
 
 		user.setCreatetime(new Date());
-		user.setPassword(MD5Util.md5(user.getPassword(), ""));// md5加密密码
+		// md5加密密码
+		user.setPassword(MD5Util.md5(user.getPassword(), ""));
 		logger.info("user -> {}", user);
 		userService.addUser(user);
 		return JSONResultUtil.ok();
@@ -68,11 +69,13 @@ public class UserController {
 	@ResponseBody
 	public PageInfo<User> getUsers(@RequestParam Map condition) {
 		int pageNum = 1;
-		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageNum"))) { // 如果不为空的话改变当前页号
+		// 如果不为空的话改变当前页号
+		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageNum"))) { 
 			pageNum = Integer.parseInt(MapUtils.getString(condition, "pageNum"));
 		}
 		int pageSize = DefaultValue.PAGE_SIZE;
-		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageSize"))) { // 如果不为空的话改变当前页大小
+		 // 如果不为空的话改变当前页大小
+		if (ValidateCheck.isNotNull(MapUtils.getString(condition, "pageSize"))) {
 			pageSize = Integer.parseInt(MapUtils.getString(condition, "pageSize"));
 		}
 		// 开始分页

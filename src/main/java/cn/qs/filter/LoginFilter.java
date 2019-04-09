@@ -32,22 +32,26 @@ public class LoginFilter implements Filter {
 	public LoginFilter() {
 	}
 
+	@Override
 	public void destroy() {
 	}
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		String path = req.getRequestURI();
 		// 如果包含login或者访问静态资源就放行
 		if (StringUtils.containsIgnoreCase(path, "login") || path.contains("/static/") || path.contains("/mobile/")) {
-			chain.doFilter(request, response); // 放行
+			// 放行
+			chain.doFilter(request, response);
 			return;
 		}
 
 		String from = request.getParameter("from");
 		if ("register".equals(from) || path.contains("addUser.html")) {
-			chain.doFilter(request, response); // 放行
+			// 放行
+			chain.doFilter(request, response);
 			return;
 		}
 
@@ -63,6 +67,7 @@ public class LoginFilter implements Filter {
 
 	}
 
+	@Override
 	public void init(FilterConfig fConfig) throws ServletException {
 	}
 
