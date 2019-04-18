@@ -1,9 +1,10 @@
 package cn.qs.exceptionHandler;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,12 +13,15 @@ import cn.qs.utils.JSONResultUtil;
 
 @RestControllerAdvice
 public class MyExceptionHandler {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MyExceptionHandler.class);
+
 	public static final String ERROR_VIEW = "error";
 
 	@ExceptionHandler(value = Exception.class)
 	public Object errorHandler(HttpServletRequest reqest, HttpServletResponse response, Exception e) throws Exception {
 
-		e.printStackTrace();
+		LOGGER.error(e.getMessage());
 
 		if (isAjax(reqest)) {
 			return JSONResultUtil.error(e.getMessage());

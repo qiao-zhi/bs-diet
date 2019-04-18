@@ -8,9 +8,15 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
+import cn.qs.exceptionHandler.MyExceptionHandler;
+
 public class IKAnalyzerUtils {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MyExceptionHandler.class);
 
 	public static void main(String[] args) {
 		List<String> testTokenStream = testTokenStream("这是什么意思什么鬼");
@@ -53,7 +59,7 @@ public class IKAnalyzerUtils {
 			}
 			tokenStream.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
 		}
 		return result;
 	}

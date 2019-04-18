@@ -13,7 +13,9 @@ public class ValidateCheck {
 	public static void checkFile(String filePath) {
 		File target = new File(filePath);
 		if (target.exists()) {
-			target.delete();
+			if (target.delete()) {
+				//
+			}
 		}
 	}
 
